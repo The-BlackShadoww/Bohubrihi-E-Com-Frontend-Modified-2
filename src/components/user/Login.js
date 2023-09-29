@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import Layout from "../Layout";
 import { Button, Typography } from "@mui/material";
 import { showError, showLoading } from "../../utils/messages";
@@ -7,6 +7,9 @@ import { login } from "../../api/apiAuth";
 import { authenticate, isAuthenticated, userInfo } from "../../utils/auth";
 
 const Login = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const socialToken = urlParams.get("token");
+
     const navigate = useNavigate();
     const [values, setValues] = useState({
         email: "",
@@ -17,6 +20,20 @@ const Login = () => {
         redirect: false,
     });
     const { email, password, loading, error, redirect, disabled } = values;
+
+    useEffect(() => {
+        if (socialToken && !redirect) {
+            authenticate(socialToken, () => {
+                setValues({
+                    ...values,
+                    success: true,
+                    disabled: false,
+                    loading: false,
+                    redirect: true,
+                });
+            });
+        }
+    });
 
     const handleChange = (e) => {
         setValues({
@@ -39,7 +56,7 @@ const Login = () => {
             .then((res) => {
                 authenticate(res.data.token, () => {
                     setValues({
-                        // ...values,
+                        ...values,
                         email: "",
                         password: "",
                         success: true,
@@ -112,6 +129,10 @@ const Login = () => {
         // }
     };
 
+    const google = () => {
+        window.open("http://localhost:3001/auth/google", "_self");
+    };
+
     return (
         <Layout title="Login">
             {showMsg()}
@@ -121,6 +142,17 @@ const Login = () => {
                 Login Here,
             </Typography>
             {signInForm()}
+            <div className="text-center flex flex-col">
+                <Button variant="contained" color="warning" onClick={google}>
+                    Login with Google
+                </Button>
+
+                <a href="http://localhost:3001/auth/facebook">
+                    <Button variant="contained" color="primary">
+                        Login with FaceBook
+                    </Button>
+                </a>
+            </div>
         </Layout>
     );
 };

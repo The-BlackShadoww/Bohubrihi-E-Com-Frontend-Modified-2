@@ -7,6 +7,7 @@ export const authenticate = (token, cb) => {
     }
 };
 
+
 export const isAuthenticated = () => {
     if (typeof window === "undefined") return false;
     if (localStorage.getItem("jwt")) {
