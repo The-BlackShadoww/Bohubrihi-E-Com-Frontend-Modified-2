@@ -158,7 +158,7 @@ const Login = () => {
                         className="img"
                     />
                     <span className="ml-2" style={{ fontWeight: "bold" }}>
-                         Google
+                        Google
                     </span>
                 </div>
                 <div
@@ -171,7 +171,7 @@ const Login = () => {
                         className="img"
                     />
                     <span className="ml-2" style={{ fontWeight: "bold" }}>
-                       FaceBook
+                        FaceBook
                     </span>
                 </div>
             </div>
