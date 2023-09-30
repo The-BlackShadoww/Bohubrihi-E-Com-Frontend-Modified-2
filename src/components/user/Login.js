@@ -5,6 +5,7 @@ import { Button, Typography } from "@mui/material";
 import { showError, showLoading } from "../../utils/messages";
 import { login } from "../../api/apiAuth";
 import { authenticate, isAuthenticated, userInfo } from "../../utils/auth";
+import "./login.css";
 
 const Login = () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -133,6 +134,10 @@ const Login = () => {
         window.open("http://localhost:3001/auth/google", "_self");
     };
 
+    const facebook = () => {
+        window.open("http://localhost:3001/auth/facebook", "_self");
+    };
+
     return (
         <Layout title="Login">
             {showMsg()}
@@ -142,16 +147,33 @@ const Login = () => {
                 Login Here,
             </Typography>
             {signInForm()}
-            <div className="text-center flex flex-col">
-                <Button variant="contained" color="warning" onClick={google}>
-                    Login with Google
-                </Button>
-
-                <a href="http://localhost:3001/auth/facebook">
-                    <Button variant="contained" color="primary">
-                        Login with FaceBook
-                    </Button>
-                </a>
+            <div className="flex flex-col justify-center items-center w-full">
+                <div
+                    onClick={google}
+                    className="my-3 border border-2 rounded-md  cursor-pointer w-1/4 flex items-center justify-center p-2"
+                >
+                    <img
+                        src="/google-logo-9822.png"
+                        alt="google logo"
+                        className="img"
+                    />
+                    <span className="ml-2" style={{ fontWeight: "bold" }}>
+                         Google
+                    </span>
+                </div>
+                <div
+                    onClick={facebook}
+                    className="border border-2 rounded-md  cursor-pointer w-1/4 flex items-center justify-center p-2"
+                >
+                    <img
+                        src="/facebook.png"
+                        alt="google logo"
+                        className="img"
+                    />
+                    <span className="ml-2" style={{ fontWeight: "bold" }}>
+                       FaceBook
+                    </span>
+                </div>
             </div>
         </Layout>
     );
