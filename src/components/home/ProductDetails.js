@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Layout from "../Layout";
 import { API } from "../../utils/config";
 import { Link, useParams } from "react-router-dom";
@@ -15,6 +15,7 @@ const ProductDetails = (props) => {
     const [success, setSuccess] = useState(false);
     const [comment, setComment] = useState("");
     const [userComments, setUserComment] = useState([]);
+    console.log(userComments);
 
     useEffect(() => {
         //!!! wrong -->> const id = props.match.params.id; !!!!!
@@ -25,7 +26,7 @@ const ProductDetails = (props) => {
         getComment()
             .then((res) => setUserComment(res.data))
             .catch((err) => console.log(err));
-    }, []);
+    }, [id]);
 
     const handleAddToCart = (product) => () => {
         if (isAuthenticated()) {
@@ -54,7 +55,6 @@ const ProductDetails = (props) => {
     const handleComment = (e) => {
         setComment(e.target.value);
     };
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -91,12 +91,14 @@ const ProductDetails = (props) => {
                 {showSuccess(success, "Item Added to Cart!")}
                 {showError(error, error)}
             </div>
-            <div className="flex p-5">
-                <div className="basis-2/4">
+            {/* content */}
+            <div className="flex md:flex-row flex-col gap-10 p-5">
+                <div className="basis-[35%] rounded-2xl">
                     <img
                         src={`${API}/product/photo/${product._id}`}
                         alt={product.name}
                         width="100%"
+                        className="rounded-xl"
                     />
                 </div>
                 <div className="px-5 basis-2/4">
@@ -107,7 +109,9 @@ const ProductDetails = (props) => {
                                     {product.name}
                                 </Typography>
                                 <Typography variant="body1">
-                                    &#2547;{product.price}
+                                    <span className="font-semibold">
+                                        &#2547;{product.price}
+                                    </span>
                                 </Typography>
                             </div>
                             <div>
@@ -141,7 +145,12 @@ const ProductDetails = (props) => {
                             {product.quantity ? (
                                 <>
                                     <Button
-                                        sx={{ marginTop: 3 }}
+                                        sx={{
+                                            marginTop: 3,
+                                            backgroundColor: "#d2dfdd",
+                                            color: "#000",
+                                            fontWeight: "600",
+                                        }}
                                         variant="contained"
                                         onClick={handleAddToCart(product)}
                                     >
@@ -157,41 +166,53 @@ const ProductDetails = (props) => {
                     {/* ------------- Comments ------------ */}
                     <div className="my-4">
                         <Typography variant="h5">Give your feedback</Typography>
-                        <form onSubmit={handleSubmit}>
+                        <form
+                            onSubmit={handleSubmit}
+                            className="flex items-center"
+                        >
                             <input
-                                className="w-full border border-2 p-3 my-4"
+                                className="w-full border rounded-md p-3 my-4"
                                 type="text"
                                 placeholder="comment"
                                 onChange={handleComment}
                                 required
                             ></input>
-                            <Button variant="contained" type="submit">
+                            {/* <Button variant="contained" type="submit">
                                 Post
-                            </Button>
+                            </Button> */}
+                            <button className="bg-[#d2dfdd] p-3 rounded-lg ml-2">
+                                Post
+                            </button>
                         </form>
+                        <div className="mt-10">
+                            <Typography variant="h6">Comments:</Typography>
+                            {userComments &&
+                                userComments
+                                    .filter((c) => c.product === id)
+                                    .map((c) => (
+                                        <Fragment key={c.id}>
+                                            <p className="p-2 my-3 bg-[#f5f5f5] rounded-xl">
+                                                {c.comment}
+                                            </p>
+                                        </Fragment>
+                                    ))}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div>
+            {/* <div className="mt-10">
                 <Typography variant="h4">Comments:</Typography>
                 {userComments &&
                     userComments
                         .filter((c) => c.product === id)
                         .map((c) => (
-                            <Card
-                                sx={{
-                                    marginTop: 2,
-                                    marginBottom: 2,
-                                    padding: 2,
-                                }}
-                                key={c.id}
-                            >
-                                <Typography variant="body1">
+                            <Fragment key={c.id}>
+                                <p className="p-2 my-3 bg-[#f5f5f5] rounded-xl">
                                     {c.comment}
-                                </Typography>
-                            </Card>
+                                </p>
+                            </Fragment>
                         ))}
-            </div>
+            </div> */}
             {/* {JSON.stringify(userComments)} */}
         </Layout>
     );

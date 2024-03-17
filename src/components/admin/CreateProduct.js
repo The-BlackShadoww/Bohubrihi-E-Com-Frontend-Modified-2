@@ -55,7 +55,7 @@ const CreateProduct = () => {
 
     const handleChange = (e) => {
         const value =
-        //! ????? 
+            //! ?????
             e.target.name === "photo" ? e.target.files[0] : e.target.value;
         formData.set(e.target.name, value);
         setValues({
@@ -105,17 +105,20 @@ const CreateProduct = () => {
     };
 
     const productForm = () => (
-        <form className="" onSubmit={handleSubmit}>
-            <h4>Photo:</h4>
-            <div className="">
-                <label className=""> </label>
-                <input
-                    type="file"
-                    name="photo"
-                    onChange={handleChange}
-                    accept="image/*"
-                    required
-                />
+        <form className="space-y-5" onSubmit={handleSubmit}>
+            <div>
+                <h4>Photo:</h4>
+                <div className="">
+                    <label className=""> </label>
+                    <input
+                        type="file"
+                        name="photo"
+                        onChange={handleChange}
+                        accept="image/*"
+                        required
+                        className="mt-3"
+                    />
+                </div>
             </div>
             <div className="">
                 <label className="">Name:</label>
@@ -178,7 +181,16 @@ const CreateProduct = () => {
                         ))}
                 </select>
             </div>
-            <Button variant="contained" type="submit" disabled={disabled}>
+            <Button
+                variant="contained"
+                type="submit"
+                disabled={disabled}
+                sx={{
+                    background: "#445955",
+                    color: "#fff",
+                    fontWeight: "600",
+                }}
+            >
                 Create Product
             </Button>
         </form>
@@ -186,22 +198,33 @@ const CreateProduct = () => {
 
     const goBack = () => (
         <div className="">
-            <Link to="/admin/dashboard" className="w-full border">
+            {/* <Link to="/admin/dashboard" className="w-full border">
+                <></>
                 Go to Dashboard
-            </Link>
+            </Link> */}
+            <Button
+                variant="outlined"
+                sx={{
+                    marginBottom: "2rem",
+                }}
+            >
+                <Link to="/admin/dashboard" className="">
+                    Go to Dashboard
+                </Link>
+            </Button>
         </div>
     );
 
     return (
         <div>
             <Layout title="Add a new product">
-                <div className="">
+                <div className="max-w-[760px] w-full mx-auto my-15">
+                    {goBack()}
                     <div className="col-md-8 offset-md-2">
                         {showError(error, error)}
                         {showLoading(loading)}
                         {showSuccess(success, "Product Added Successfully!")}
                         {productForm()}
-                        {goBack()}
                     </div>
                 </div>
             </Layout>

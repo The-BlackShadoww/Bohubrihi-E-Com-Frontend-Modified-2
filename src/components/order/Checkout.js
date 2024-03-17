@@ -43,7 +43,7 @@ const Checkout = () => {
         } else {
             arr = orderItems.map((cartItem) => cartItem.price * cartItem.count);
         }
-        
+
         const sum = arr.reduce((a, b) => a + b, 0);
         return sum;
     };
@@ -144,7 +144,7 @@ const Checkout = () => {
                             <div className="flex justify-between">
                                 <div className="w-full basis-3/5">
                                     <div style={{ height: "auto" }}>
-                                        <div className="border w-full p-4 font-bold mb-4">
+                                        <div className="border w-full p-4 font-bold mb-4 bg-[#d2dfdd]">
                                             Shipping Details
                                         </div>
                                         <div className="card-body">
@@ -156,7 +156,7 @@ const Checkout = () => {
                                     <div style={{ height: "auto" }}>
                                         {orderDetails()}
                                         <div
-                                            className="flex justify-between p-3"
+                                            className="flex justify-between p-3 mt-16"
                                             style={{
                                                 backgroundColor: "blue",
                                                 color: "white",

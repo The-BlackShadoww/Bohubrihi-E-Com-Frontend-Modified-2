@@ -65,7 +65,7 @@ const CreateCategory = () => {
         return (
             <form onSubmit={handleSubmit}>
                 <div className="my-4">
-                    <label className="">Name</label>
+                    <label className="">Name of the new category</label>
                     <input
                         name="name"
                         type="text"
@@ -73,10 +73,18 @@ const CreateCategory = () => {
                         value={name}
                         autoFocus
                         required
-                        className="w-full border p-4"
+                        className="w-full border p-4 mt-3"
                     />
                 </div>
-                <Button type="submit" variant="contained">
+                <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                        background: "#445955",
+                        color: "#fff",
+                        fontWeight: "600",
+                    }}
+                >
                     Create Category
                 </Button>
             </form>
@@ -85,7 +93,12 @@ const CreateCategory = () => {
 
     const goBack = () => (
         <div className="mt-5">
-            <Button variant="outlined">
+            <Button
+                variant="outlined"
+                sx={{
+                    marginTop: "1rem",
+                }}
+            >
                 <Link to="/admin/dashboard" className="">
                     Go to Dashboard
                 </Link>
@@ -99,7 +112,7 @@ const CreateCategory = () => {
                 title="Add a new category"
                 description="Ready to add a new category?"
             >
-                <div className="">
+                <div className="max-w-[760px] w-full mx-auto my-15">
                     <div className="">
                         {showLoading(loading)}
                         {showError(error, error)}

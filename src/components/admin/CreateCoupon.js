@@ -28,7 +28,6 @@ const CreateCoupon = () => {
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err));
 
-        
         setValues({
             ...values,
             name: "",
@@ -69,7 +68,16 @@ const CreateCoupon = () => {
                         className="w-full border border-black p-4"
                     />
                 </div>
-                <Button variant="contained" color="success" type="submit">
+                <Button
+                    variant="contained"
+                    color="success"
+                    type="submit"
+                    sx={{
+                        background: "#445955",
+                        color: "#fff",
+                        fontWeight: "600",
+                    }}
+                >
                     {" "}
                     Create Coupon
                 </Button>
@@ -77,8 +85,13 @@ const CreateCoupon = () => {
         );
     };
     const goBack = () => (
-        <div className="mt-5">
-            <Button variant="outlined">
+        <div className="">
+            <Button
+                variant="outlined"
+                sx={{
+                    marginBottom: "2rem",
+                }}
+            >
                 <Link to="/admin/dashboard" className="">
                     Go to Dashboard
                 </Link>
@@ -86,10 +99,10 @@ const CreateCoupon = () => {
         </div>
     );
     return (
-        <div>
+        <div className="max-w-[760px] w-full mx-auto my-15">
             <Layout title="create coupon">
-                {couponForm()}
                 {goBack()}
+                {couponForm()}
             </Layout>
         </div>
     );

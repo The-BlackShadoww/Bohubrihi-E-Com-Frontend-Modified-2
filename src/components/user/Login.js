@@ -108,7 +108,7 @@ const Login = () => {
 
                 <button
                     type="submit"
-                    className="w-full p-4 border my-5"
+                    className="w-full p-4 border my-1 bg-[#d2dfdd]"
                     disabled={disabled}
                 >
                     Login
@@ -140,39 +140,41 @@ const Login = () => {
 
     return (
         <Layout title="Login">
-            {showMsg()}
-            {showLoading(loading)}
-            {showError(error, error)}
-            <Typography variant="h4" sx={{ marginBottom: 2 }}>
-                Login Here,
-            </Typography>
-            {signInForm()}
-            <div className="flex flex-col justify-center items-center w-full">
-                <div
-                    onClick={google}
-                    className="my-3 border border-2 rounded-md  cursor-pointer w-1/4 flex items-center justify-center p-2"
-                >
-                    <img
-                        src="/google-logo-9822.png"
-                        alt="google logo"
-                        className="img"
-                    />
-                    <span className="ml-2" style={{ fontWeight: "bold" }}>
-                        Google
-                    </span>
-                </div>
-                <div
-                    onClick={facebook}
-                    className="border border-2 rounded-md  cursor-pointer w-1/4 flex items-center justify-center p-2"
-                >
-                    <img
-                        src="/facebook.png"
-                        alt="google logo"
-                        className="img"
-                    />
-                    <span className="ml-2" style={{ fontWeight: "bold" }}>
-                        FaceBook
-                    </span>
+            <div className="max-w-[660px] w-full mx-auto">
+                {showMsg()}
+                {showLoading(loading)}
+                {showError(error, error)}
+                <Typography variant="h4" sx={{ marginBottom: 2 }}>
+                    Login Here,
+                </Typography>
+                {signInForm()}
+                <div className="flex justify-between items-center gap-4 w-full mt-8">
+                    <div
+                        onClick={google}
+                        className="my-3 border border-2 rounded-md  cursor-pointer w-full flex items-center justify-center p-2"
+                    >
+                        <img
+                            src="/google-logo-9822.png"
+                            alt="google logo"
+                            className="img"
+                        />
+                        <span className="ml-2" style={{ fontWeight: "bold" }}>
+                            Google
+                        </span>
+                    </div>
+                    <div
+                        onClick={facebook}
+                        className="border border-2 rounded-md  cursor-pointer w-full flex items-center justify-center p-2"
+                    >
+                        <img
+                            src="/facebook.png"
+                            alt="google logo"
+                            className="img"
+                        />
+                        <span className="ml-2" style={{ fontWeight: "bold" }}>
+                            Facebook
+                        </span>
+                    </div>
                 </div>
             </div>
         </Layout>

@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-
 const CheckBox = ({ categories, handleFilters }) => {
     const [checked, setChecked] = useState([]);
     const checkedIds = [...checked];
@@ -30,7 +29,7 @@ const CheckBox = ({ categories, handleFilters }) => {
     // }, [checked])
 
     return categories.map((category) => (
-        <li key={category._id}>
+        <li key={category._id} className="mb-1">
             <input
                 type="checkbox"
                 onChange={handleToggle(category._id)}
@@ -38,8 +37,9 @@ const CheckBox = ({ categories, handleFilters }) => {
                 //!!!!! Problem !!!!!!
                 //todo At first the id of the current category will not be in the checked array so the value of category._id === -1 will be true and whenever the the current category is checked this will be false and will show checked. Again whenever the same category will be checked it will look for the index of the that category in checked array and as it is checked previously this  category._id === -1 will return false.So, it will show unchecked in the box.
                 value={checked.indexOf(category._id === -1)}
+                className="mr-2"
             />
-            <label>{category.name}</label>
+            <label className="font-semibold text-black/70">{category.name}</label>
         </li>
     ));
 };

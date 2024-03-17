@@ -50,70 +50,79 @@ const ShippingAddress = () => {
 
     const profileForm = () => (
         <form onSubmit={handleSubmit}>
-            <label className="text-muted">Phone:</label>
+            <label className="text-muted font-semibold">Phone</label>
             <input
                 name="phone"
                 value={phone}
                 required
-                className="w-full border p-3"
+                className="w-full border p-3 my-2"
                 onChange={handleChange}
             />
-            <label className="text-muted">Address 1:</label>
+            <label className="text-muted font-semibold">Address 1</label>
             <input
                 name="address1"
                 value={address1}
                 required
-                className="w-full border p-3"
+                className="w-full border p-3 my-2"
                 onChange={handleChange}
             />
-            <label className="text-muted">Address 2:</label>
+            <label className="text-muted font-semibold">Address 2</label>
             <input
                 name="address2"
                 value={address2}
-                className="w-full border p-3"
+                className="w-full border p-3 my-2"
                 onChange={handleChange}
             />
             <div className="row">
                 <div className="col-4">
-                    <label className="text-muted">City:</label>
+                    <label className="text-muted font-semibold">City</label>
                     <input
                         name="city"
                         value={city}
                         required
-                        className="w-full border p-3"
+                        className="w-full border p-3 my-2"
                         onChange={handleChange}
                     />
                 </div>
                 <div className="col-4">
-                    <label className="text-muted">Post Code: </label>
+                    <label className="text-muted font-semibold">
+                        Post Code:{" "}
+                    </label>
                     <input
                         name="postcode"
                         value={postcode}
                         type="number"
                         required
-                        className="w-full border p-3"
+                        className="w-full border p-3 my-2"
                         onChange={handleChange}
                     />
                 </div>
                 <div className="col-4">
-                    <label className="text-muted">Country:</label>
+                    <label className="text-muted font-semibold">Country</label>
                     <input
                         name="country"
                         value={country}
                         required
-                        className="w-full border p-3"
+                        className="w-full border p-3 my-2"
                         onChange={handleChange}
                     />
                     <br />
 
-                    <Button
-                        variant="contained"
-                        type="submit"
-                        className="btn btn-primary btn-sm float-right"
-                        disabled={disabled}
-                    >
-                        Save and Checkout
-                    </Button>
+                    <div className="mt-5">
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            sx={{
+                                fontWeight: "600",
+                                backgroundColor: "#d2dfdd",
+                                color: "#000",
+                            }}
+                            className="btn btn-primary btn-sm float-right"
+                            disabled={disabled}
+                        >
+                            Save and Checkout
+                        </Button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -146,11 +155,17 @@ const ShippingAddress = () => {
                         </li>
                     </ol>
                 </nav>
-                <div className="">
-                    <Card sx={{ height: "auto", padding: 5 }}>
+                <div className="max-w-[760px] w-full mx-auto my-15 ">
+                    <Card
+                        sx={{
+                            height: "auto",
+                            padding: 5,
+                            borderRadius: "1.5rem",
+                        }}
+                    >
                         <div
-                            className="w-full border p-3 font-bold text-center text-white"
-                            style={{ backgroundColor: "#1565c0" }}
+                            className="w-full border p-3 font-bold text-center text-black mb-8"
+                            style={{ backgroundColor: "#d2dfdd" }}
                         >
                             Shipping Address
                         </div>

@@ -10,9 +10,9 @@ const RadioBox = ({ prices, handleFilters }) => {
                 value={price.id}
                 name="price_filter"
                 type="radio"
-                className=""
+                className="mr-2"
             />
-            <label className="">{price.name}</label>
+            <label className="font-semibold text-black/70">{price.name}</label>
         </div>
     ));
 };

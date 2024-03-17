@@ -66,12 +66,12 @@ const Register = () => {
 
     const signUpForm = () => {
         const form = (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="">
                 <label className="">Name:</label>
                 <input
                     type="text"
                     name="name"
-                    className="w-full border p-4"
+                    className="w-full border p-4 mb-3"
                     value={name}
                     onChange={handleChange}
                     required
@@ -81,7 +81,7 @@ const Register = () => {
                 <input
                     type="email"
                     name="email"
-                    className="w-full border p-4"
+                    className="w-full border p-4 mb-3"
                     value={email}
                     onChange={handleChange}
                     required
@@ -91,13 +91,23 @@ const Register = () => {
                 <input
                     type="password"
                     name="password"
-                    className="w-full border p-4"
+                    className="w-full border p-4 mb-3"
                     value={password}
                     onChange={handleChange}
                     required
                 />
 
-                <Button variant="contained" type="submit" disabled={disabled}>
+                <Button
+                    variant="contained"
+                    type="submit"
+                    disabled={disabled}
+                    sx={{
+                        background: "#445955",
+                        color: "#fff",
+                        fontWeight: "600",
+                        marginTop: "2rem",
+                    }}
+                >
                     Create Account
                 </Button>
             </form>
@@ -122,14 +132,16 @@ const Register = () => {
     return (
         <Layout title="Register">
             {/* //* The purpose of this function is that if the user is logged in he can not go to the register page again. */}
-            {isAuthenticated() ? <Navigate to="/" /> : ""}
-            {showSuccess()}
-            {showLoading(loading)}
-            {showError(error, error)}
-            <Typography variant="h4" sx={{ marginBottom: 2 }}>
-                Register Here,
-            </Typography>
-            {signUpForm()}
+            <div className="max-w-[660px] w-full mx-auto">
+                {isAuthenticated() ? <Navigate to="/" /> : ""}
+                {showSuccess()}
+                {showLoading(loading)}
+                {showError(error, error)}
+                <Typography variant="h4" sx={{ marginBottom: 2 }}>
+                    Register Here,
+                </Typography>
+                {signUpForm()}
+            </div>
         </Layout>
     );
 };
