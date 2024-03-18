@@ -5,6 +5,7 @@ import "./Menu.css";
 import { signOut, isAuthenticated, userInfo } from "../utils/auth";
 import { Typography } from "@mui/material";
 import { IoCartOutline } from "react-icons/io5";
+// import Logo from "../../public/logo.png";
 
 const Menu = () => {
     const navigate = useNavigate();
@@ -63,7 +64,8 @@ const Menu = () => {
     return (
         <div className="flex py-5 justify-between mb-4">
             <Link to={"/"}>
-                <h1 className="text-xl text-[#121212] font-bold ">ShopHub</h1>
+                <img src="/logo.png" alt="logo" className="w-[150px]"/>
+                {/* <h1 className="text-xl text-[#121212] font-bold ">ShopHub</h1> */}
             </Link>
             <nav className="flex justify-end items-center flex-grow-[1] ">
                 {navBar} <span>{logoutBtn}</span>

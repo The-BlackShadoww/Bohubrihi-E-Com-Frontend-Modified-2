@@ -170,7 +170,7 @@ const Home = () => {
                     handleSearchSubmit={handleSearchSubmit}
                 />
                 <Grid container className="p-2 rounded-xl">
-                    <Grid item xs={3} className="p-2">
+                    <Grid item md={3} xs={6} className="p-2">
                         <button onClick={() => setShowFilter(!showFilter)}>
                             <Typography
                                 variant="body1"
@@ -204,7 +204,7 @@ const Home = () => {
                         </ul>
                         {/* {JSON.stringify(filters)} */}
                     </Grid>
-                    <Grid item xs={3} className="p-2">
+                    <Grid item md={3} xs={6} className="p-2">
                         <button
                             onClick={() =>
                                 setShowFilterByPrice(!showFilterByPrice)
@@ -242,7 +242,7 @@ const Home = () => {
                         </div>
                     </Grid>
                     {/* //todo ==> Modifications */}
-                    <Grid item xs={3} className="p-2">
+                    <Grid item md={3} xs={6} className="p-2">
                         <Typography
                             variant="body1"
                             className="flex items-center"
@@ -252,7 +252,7 @@ const Home = () => {
                             <Ordering handleOrder={handleOrder} />
                         </Typography>
                     </Grid>
-                    <Grid item xs={3} className="p-2">
+                    <Grid item md={3} xs={6} className="p-2">
                         <Typography
                             variant="body1"
                             className="flex items-center"
@@ -284,7 +284,14 @@ const Home = () => {
                 >
                     {products &&
                         products.map((product) => (
-                            <Grid item lg={3} md={6} sm={6} xs={12}>
+                            <Grid
+                                key={product.id}
+                                item
+                                lg={3}
+                                md={6}
+                                sm={6}
+                                xs={12}
+                            >
                                 <ProductCard
                                     product={product}
                                     key={product._id}
@@ -297,10 +304,10 @@ const Home = () => {
             <div className="mb-7 w-full text-center">
                 <Button
                     variant="contained"
-                    color="secondary"
+                    color="warning"
                     onClick={handleLoadMore}
                 >
-                    Load more...
+                    Load more
                 </Button>
             </div>
         </Layout>
